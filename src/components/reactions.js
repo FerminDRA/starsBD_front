@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-// Componente de botón de reacción
 const ReactionButton = React.memo(({ emoji, count, onClick }) => (
   <button onClick={onClick}>
     <span role="img" aria-label="emoji">{emoji}</span> {count}
@@ -19,7 +18,6 @@ class Reactions extends Component {
     }
   };
 
-  // Función para manejar las reacciones
   handleReaction = (reaction) => {
     this.setState(prevState => ({
       reactions: {
@@ -29,7 +27,6 @@ class Reactions extends Component {
     }));
   };
 
-  // Función para renderizar los botones de reacción
   renderReactionButton = (reaction) => {
     const { reactions } = this.state;
     return (
@@ -53,7 +50,6 @@ class Reactions extends Component {
   }
 }
 
-// Mapa de emojis para las reacciones
 const emojis = {
   like: '👍',
   love: '❤️',
