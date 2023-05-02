@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import StarsDataService from "../services/stars.service";
 import ReactionButtons from "./reactions";
 import CommentForm from './comentarios';
-//import Stars from "./stars.component";
 
 export default class StarsList extends Component {
   constructor(props) {

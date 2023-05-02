@@ -6,7 +6,7 @@ class StarsDataService {
   getAll() {
     return db;
   }
-  //Ejemplo buscar en el add su se puede establecer un ID
+  
   create(stars) {
     return db.add(stars);
   }

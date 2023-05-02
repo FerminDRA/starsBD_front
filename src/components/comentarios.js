@@ -5,8 +5,6 @@ function CommentForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    //const comment = { text, author };
-    //props.onCommentSubmit(comment);
     setText('');
   };
 
