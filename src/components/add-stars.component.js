@@ -32,10 +32,6 @@ export default class AddStars extends Component {
   }
 
   handleUpload(e, file) {
-    //Cambiar el nombre del archivo por la fecha y hora de subida
-    //const now = new Date();
-    //const filename = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + '_' + now.getHours() + '-' + now.getMinutes() + '-' + now.getSeconds();
-    //const uploadTask = storage.ref('/images/' + filename).put(file);
     e.preventDefault();
     console.log(file);
     alert(file.name);
@@ -48,7 +44,6 @@ export default class AddStars extends Component {
             .then((myurl)=>{
               alert(myurl);
               this.setState({ url: myurl });
-              //this.state.url= myurl;
             });
     });
   }
