@@ -1,4 +1,20 @@
 import React, { Component } from 'react';
+import KafkaService from "../services/kafka.service";
+
+function saveLike(e, status) {
+
+  let data = {
+    id: 0,
+    status: status
+  };
+
+  console.log(JSON.stringify(data));
+
+  KafkaService.reaction("i-love-adsoftsito");
+  e.preventDefault();
+}
+
+
 
 const ReactionButton = React.memo(({ emoji, count, onClick }) => (
   <button onClick={onClick}>
@@ -44,6 +60,17 @@ class Reactions extends Component {
       <div>
         <div>
           {Object.keys(this.state.reactions).map(this.renderReactionButton)}
+        </div>
+        <div>
+          <button onClick={(e) => {
+            e.preventDefault();
+            saveLike(e, 1)
+
+          }
+          } >
+            Love Kafka❤️
+          </button>
+
         </div>
       </div>
     );
