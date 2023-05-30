@@ -7,6 +7,7 @@ import AddStars from "./components/add-stars.component";
 import StarsList from "./components/stars-list.component";
 import Stars from "./components/show-stars";
 import Perfil from "./components/perfil";
+import LoginWithGoogle from "./components/google_signin";
 
 class App extends Component {
   render() {
@@ -42,6 +43,7 @@ class App extends Component {
 
         <div className="container mt-3">
           <h2>Stars of Universe</h2>
+          <LoginWithGoogle/>
           <Routes>
             <Route exact path="/stars" element={<StarsList />} />
             <Route exact path="/add" element={<AddStars />} />

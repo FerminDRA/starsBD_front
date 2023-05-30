@@ -10,80 +10,169 @@ function saveLike(e, status) {
 
   console.log(JSON.stringify(data));
 
-  KafkaService.reaction("i-love-adsoftsito");
+  KafkaService.reaction("Like");
   e.preventDefault();
 }
 
+function saveLove(e, status) {
 
+  let data = {
+    id: 0,
+    status: status
+  };
 
-const ReactionButton = React.memo(({ emoji, count, onClick }) => (
-  <button onClick={onClick}>
-    <span role="img" aria-label="emoji">{emoji}</span> {count}
-  </button>
-));
+  console.log(JSON.stringify(data));
+
+  KafkaService.reaction("Love");
+  e.preventDefault();
+}
+
+function saveLaugh(e, status) {
+
+  let data = {
+    id: 0,
+    status: status
+  };
+
+  console.log(JSON.stringify(data));
+
+  KafkaService.reaction("Laugh");
+  e.preventDefault();
+}
+
+function saveCry(e, status) {
+
+  let data = {
+    id: 0,
+    status: status
+  };
+
+  console.log(JSON.stringify(data));
+
+  KafkaService.reaction("Cry");
+  e.preventDefault();
+}
+
+function saveWow(e, status) {
+
+  let data = {
+    id: 0,
+    status: status
+  };
+
+  console.log(JSON.stringify(data));
+
+  KafkaService.reaction("Wow");
+  e.preventDefault();
+}
+
+function saveAngry(e, status) {
+
+  let data = {
+    id: 0,
+    status: status
+  };
+
+  console.log(JSON.stringify(data));
+
+  KafkaService.reaction("Angry");
+  e.preventDefault();
+}
 
 class Reactions extends Component {
-  state = {
-    reactions: {
-      like: 0,
-      love: 0,
-      laugh: 0,
-      wow: 0,
-      sad: 0,
-      angry: 0
-    }
-  };
-
-  handleReaction = (reaction) => {
-    this.setState(prevState => ({
-      reactions: {
-        ...prevState.reactions,
-        [reaction]: prevState.reactions[reaction] + 1
-      }
-    }));
-  };
-
-  renderReactionButton = (reaction) => {
-    const { reactions } = this.state;
-    return (
-      <ReactionButton
-        key={reaction}
-        emoji={emojis[reaction]}
-        count={reactions[reaction]}
-        onClick={() => this.handleReaction(reaction)}
-      />
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+        likeCount: 0,
+        loveCount: 0,
+        laughCount: 0,
+        cryCount: 0,
+        wowCount: 0,
+        angryCount: 0
+    };
   }
+  
+
+  handleLikeClick = () => {
+    this.setState({ likeCount: this.state.likeCount + 1 });
+  };
+
+  handleLoveClick = () => {
+    this.setState({ loveCount: this.state.loveCount + 1 });
+  };
+
+  handleLaughClick = () => {
+    this.setState({ laughCount: this.state.laughCount + 1 });
+  };
+
+  handleCryClick = () => {
+    this.setState({ cryCount: this.state.cryCount + 1 });
+  };
+
+  handleWowClick = () => {
+    this.setState({ wowCount: this.state.wowCount + 1 });
+  };
+
+  handleAngryClick = () => {
+    this.setState({ angryCount: this.state.angryCount + 1 });
+  };
 
   render() {
+    //const { likeCount, loveCount, laughCount, cryCount , wowCount, angryCount} = this.state;
+
     return (
-      <div>
-        <div>
-          {Object.keys(this.state.reactions).map(this.renderReactionButton)}
-        </div>
-        <div>
-          <button onClick={(e) => {
+      <div className="reactions">
+        <button className='reaccion' onClick={(e) => {
             e.preventDefault();
             saveLike(e, 1)
 
           }
           } >
-            Love Kafka❤️
-          </button>
+            👍
+        </button>
+        <button className='reaccion' onClick={(e) => {
+            e.preventDefault();
+            saveLove(e, 1)
 
-        </div>
+          }
+          } >
+            ❤️
+        </button>
+        <button className='reaccion' onClick={(e) => {
+            e.preventDefault();
+            saveLaugh(e, 1)
+
+          }
+          } >
+            😂
+        </button>
+        <button className='reaccion' onClick={(e) => {
+            e.preventDefault();
+            saveCry(e, 1)
+
+          }
+          } >
+            😢
+        </button>
+        <button className='reaccion' onClick={(e) => {
+            e.preventDefault();
+            saveWow(e, 1)
+
+          }
+          } >
+            😮
+        </button>
+        <button className='reaccion' onClick={(e) => {
+            e.preventDefault();
+            saveAngry(e, 1)
+
+          }
+          } >
+            😠
+        </button>
       </div>
     );
   }
 }
-
-const emojis = {
-  like: '👍',
-  love: '❤️',
-  laugh: '😂',
-  wow: '😮',
-  sad: '😢',
-  angry: '😠'
-};
 
 export default Reactions;

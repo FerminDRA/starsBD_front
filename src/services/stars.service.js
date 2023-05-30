@@ -1,6 +1,6 @@
-import firebase from "../firebase";
+import {firestore} from "../firebase";
 
-const db = firebase.collection("/stars");
+const db = firestore.collection("/stars");
 
 class StarsDataService {
   getAll() {

@@ -3,6 +3,8 @@ import firebase from "firebase/compat/app";
 //import "firebase/firestore";
 import 'firebase/compat/storage'
 import "firebase/compat/firestore";
+import 'firebase/compat/auth';
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,13 +16,11 @@ const firebaseConfig = {
     appId: "1:305097421066:web:777bae362e41266b410af3"
   };
 
-const firebaseApp= firebase.initializeApp(firebaseConfig);
-const firestore= firebaseApp.firestore();
-const storage = firebase.storage()
+  firebase.initializeApp(firebaseConfig);
+  const firestore = firebase.firestore();
+  const storage = firebase.storage();
 
-export {
-  storage,firestore as default
-}
+export { firestore, storage, firebase as default };
 
 //firebase.initializeApp(config);
 //export default firebase.firestore();
