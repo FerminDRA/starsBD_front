@@ -3,11 +3,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddStars from "./components/add-stars.component";
+//import AddStars from "./components/add-stars.component";
 import StarsList from "./components/stars-list.component";
 import Stars from "./components/show-stars";
 import Perfil from "./components/perfil";
-import LoginWithGoogle from "./components/google_signin";
+import Login from "./components/google_signin";
 
 class App extends Component {
   render() {
@@ -43,10 +43,9 @@ class App extends Component {
 
         <div className="container mt-3">
           <h2>Stars of Universe</h2>
-          <LoginWithGoogle/>
           <Routes>
             <Route exact path="/stars" element={<StarsList />} />
-            <Route exact path="/add" element={<AddStars />} />
+            <Route exact path="/add" element={<Login />} />
             <Route exact path="/inicio" element={<Stars />} />
             <Route exact path="/perfil" element={<Perfil />} />
           </Routes>
