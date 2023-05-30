@@ -1,4 +1,5 @@
 import React from 'react';
+import AddStars from "./add-stars.component";
 import firebase from '../firebase'; // Importa la configuración de Firebase desde firebase.js
 
 const auth = firebase.auth();
@@ -32,8 +33,9 @@ return (
     <div className="login-container">
       {user ? (
         <>
-          <h1>Hola, {user.displayName}!</h1>
+          
           <button onClick={signOut}>Cerrar sesión</button>
+          <AddStars></AddStars>
         </>
       ) : (
         <button onClick={signInWithGoogle}>Iniciar sesión con Google</button>
