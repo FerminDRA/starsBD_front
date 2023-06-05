@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import StarsDataService from "../services/stars.service";
-import ReactionButtons from "./reactions";
-import CommentForm from './comentarios';
+import LoginWithGoogle from './google_signin_reactions_comments'
 
 export default class StarsList extends Component {
   constructor(props) {
@@ -60,6 +59,7 @@ export default class StarsList extends Component {
 
   render() {
     const { starsList, currentStars } = this.state;
+    const user = localStorage.getItem('user');
 
     return (
       <div className="gallery">
@@ -72,8 +72,7 @@ export default class StarsList extends Component {
               <img className="firebase-image" src={currentStars.url} alt={currentStars.title} />
             </div>
             <div>
-                <ReactionButtons />
-                <CommentForm/>
+              <LoginWithGoogle currentStars={currentStars} />
             </div>
             
             <div className='divButton'>

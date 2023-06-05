@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AddStars from "./add-stars.component";
+import Reaction from "./reactions";
+import Comments from "./comentarios";
 import firebase from '../firebase'; // Importa la configuración de Firebase desde firebase.js
 
 const auth = firebase.auth();
@@ -35,17 +36,17 @@ const LoginWithGoogle = ({ currentStars }) => {
       });
   };
 
-return (
+  return (
     <div className="login-container">
       {user ? (
         <>
-          
           <button onClick={signOut}>Cerrar sesión</button>
-          <AddStars></AddStars>
+          <Reaction id={currentStars.id} />
+          <Comments id={currentStars.id} />
         </>
       ) : (
-        <button onClick={signInWithGoogle}>Iniciar sesión con Google</button>
-      )}
+          <button onClick={signInWithGoogle}>Iniciar sesión con Google</button>
+        )}
     </div>
   );
 };

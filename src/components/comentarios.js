@@ -1,27 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+//import "../styles/clip.css";
+import KafkaService from "../services/kafka.service";
+import axios from 'axios';
 
-function CommentForm(props) {
-  const [text, setText] = useState('');
+const CommentsComponent = ({ id }) => {
+  const [comentarios, setComentarios] = useState([]);
+  const [commentText, setCommentText] = useState([]);
+  const uri = "https://api-reactions-comments-service-api-fermindra.cloud.okteto.net/api/comments"
 
-  const handleSubmit = e => {
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  const fetchComments = async (r) => {
+    try {
+      const response = await axios.get(`${uri}/${id}`);
+      const comentarios = response.data ? response.data : [];
+
+      setComentarios(comentarios);
+    } catch (error) {
+      console.log('Error al obtener los comentarios:', error);
+    }
+  };
+
+  const comment = (e, status) => {
+    const user = localStorage.getItem('user');
+    const data = {
+      userId: user,
+      objectId: id,
+      comment: commentText
+    };
+
+    console.log(JSON.stringify(data));
+    KafkaService.commentPush(data);
     e.preventDefault();
-    setText('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <p>Comentario:</p>  
+    <div className="comments-section">
+      <h4>Comments</h4>
+      <div className="form-group">
+        <label htmlFor="comment-input">Leave a comment:</label>
+        <textarea
+          id="comment-input"
+          name="comment"
+          rows="4"
+          placeholder="Write your comment here..."
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+        ></textarea>
       </div>
-      <div>
-        
-        <textarea id="text" value={text} onChange={e => setText(e.target.value)} />
+      <button type="button" onClick={comment}>
+        Comentar
+      </button>
+      <div className="comments-list">
+        {comentarios.map((comentario) => (
+          <div className="comment" key={comentario._id}>
+            <h5>{comentario.userId}</h5>
+            <p>{comentario.comment}</p>
+          </div>
+        ))}
       </div>
-      <div>
-        <button className='buttonStl' type="submit">Enviar</button>
-      </div>
-    </form>
+    </div>
   );
-}
+};
 
-export default CommentForm;
+export default CommentsComponent;
