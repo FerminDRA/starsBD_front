@@ -59,7 +59,6 @@ export default class StarsList extends Component {
 
   render() {
     const { starsList, currentStars } = this.state;
-    const user = localStorage.getItem('user');
 
     return (
       <div className="gallery">
