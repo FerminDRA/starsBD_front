@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-//import "../styles/clip.css";
 import KafkaService from "../services/kafka.service";
 import axios from 'axios';
 
@@ -9,19 +8,18 @@ const CommentsComponent = ({ id }) => {
   const uri = "https://api-reactions-comments-service-api-fermindra.cloud.okteto.net/api/comments"
 
   useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`${uri}/${id}`);
+        const comentarios = response.data ? response.data : [];
+        setComentarios(comentarios);
+      } catch (error) {
+        console.log('Error al obtener los comentarios:', error);
+      }
+    };
+
     fetchComments();
-  }, []);
-
-  const fetchComments = async (r) => {
-    try {
-      const response = await axios.get(`${uri}/${id}`);
-      const comentarios = response.data ? response.data : [];
-
-      setComentarios(comentarios);
-    } catch (error) {
-      console.log('Error al obtener los comentarios:', error);
-    }
-  };
+  }, [id]);
 
   const comment = (e, status) => {
     const user = localStorage.getItem('user');
