@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
-//import AddStars from "./components/add-stars.component";
 import StarsList from "./components/stars-list.component";
 import Stars from "./components/show-stars";
 import Perfil from "./components/perfil";
